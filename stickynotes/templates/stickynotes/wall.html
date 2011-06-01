@@ -16,17 +16,13 @@
 <div id="main">
 	<a id="addButton" class="green-button" href="{% url sticky_new_note %}">Add a note</a>
 
-	<div class="note yellow" style="left:50px;top:50px;z-index:0">
-        another note
-		<div class="author">Donald Duck</div>
-		<span class="data">1232</span>
+    {% for note in notes %}
+	<div class="note {{ note.color }}" style="left:{{ note.x }}px;top:{{ note.y }}px;z-index:{{ note.z }}">
+        {{ note.text }} 
+		<div class="author">{{ note.name }}</div>
+		<span class="data">{{ note.id }}</span>
 	</div>
-
-	<div class="note blue" style="left:0px;top:0px;z-index:0">
-        Hello World - my first note
-		<div class="author">Bugs Bunny</div>
-		<span class="data">555</span>
-	</div>
+    {% endfor %}
 
 </div>
 

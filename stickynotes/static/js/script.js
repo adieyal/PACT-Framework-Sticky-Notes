@@ -51,7 +51,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		$(this).replaceWith('<img src="img/ajax_load.gif" style="margin:30px auto;display:block" />');
+		$(this).replaceWith('<img src="static/css/img/ajax_load.gif" style="margin:30px auto;display:block" />');
 		
 		var data = {
 			'zindex'	: ++zIndex,
@@ -96,14 +96,16 @@ function make_draggable(elements)
 		start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
 		stop:function(e,ui){
 			
-			/* Sending the z-index and positon of the note to update_position.php via AJAX GET: */
+			/* Sending the z-index and positon of the note to update_position.php via AJAX POST: */
 
-			$.get('ajax/update_position.php',{
-				  x		: ui.position.left,
-				  y		: ui.position.top,
-				  z		: zIndex,
-				  id	: parseInt(ui.helper.find('span.data').html())
-			});
+            var data = {
+                'x' : ui.position.left,
+                'y' : ui.position.top,
+                'z'	: zIndex,
+                'id': parseInt(ui.helper.find('span.data').html())
+            };
+
+			$.post('stickynotes/ajax/update_position/', data);
 		}
 	});
 }
