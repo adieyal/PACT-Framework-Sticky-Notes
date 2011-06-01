@@ -35,3 +35,10 @@ def update_position(request):
     else:
         raise Http404
     
+def delete(request, id):
+    if request.method == "DELETE":
+        note = get_object_or_404(models.Note, pk=int(id))
+        note.delete()
+        return HttpResponse("Deleted Successfully")
+    else:
+        raise Http404

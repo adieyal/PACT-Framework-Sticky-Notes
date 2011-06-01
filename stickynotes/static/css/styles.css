@@ -29,6 +29,17 @@ body{
 	box-shadow:2px 2px 0 #DDDDDD;
 }
 
+.note .close {
+    position: relative;
+    left: 95px;
+    top: -10px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
 #fancy_ajax .note{	cursor:default; }
 
 /* Three styles for the notes: */

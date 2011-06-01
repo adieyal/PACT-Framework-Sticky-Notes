@@ -2,6 +2,24 @@ $(document).ready(function(){
 	/* This code is executed after the DOM has been completely loaded */
 
 	var tmp;
+
+    $('.note .close').click(function(){
+        result = confirm("Are you sure you want to delete this note?");
+        if (result) {
+            note = $(this).parents(".note");
+            var id = $(this).siblings(".data")[0].innerText;
+            $.ajax({
+               type: "DELETE",
+               url: "/stickynotes/ajax/" + id + "/delete/",
+               success: function(msg){
+                   note.animate({
+                       "height": "toggle", 
+                       "opacity": "toggle",
+                   }, 700);
+               }
+            })
+        }
+    });
 	
 	$('.note').each(function(){
 		/* Finding the biggest z-index value of the notes */
@@ -96,7 +114,7 @@ function make_draggable(elements)
 		start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
 		stop:function(e,ui){
 			
-			/* Sending the z-index and positon of the note to update_position.php via AJAX POST: */
+			/* Sending the z-index and positon of the note to update_position via AJAX POST: */
 
             var data = {
                 'x' : ui.position.left,

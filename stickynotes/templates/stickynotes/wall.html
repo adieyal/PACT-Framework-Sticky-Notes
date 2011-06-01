@@ -18,6 +18,7 @@
 
     {% for note in notes %}
 	<div class="note {{ note.color }}" style="left:{{ note.x }}px;top:{{ note.y }}px;z-index:{{ note.z }}">
+        <div class="close">x</div>
         {{ note.text }} 
 		<div class="author">{{ note.name }}</div>
 		<span class="data">{{ note.id }}</span>
