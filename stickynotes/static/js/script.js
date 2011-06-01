@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 	var tmp;
 
-    $('.note .close').click(function(){
+    $('.note .close').live("click", function(){
         result = confirm("Are you sure you want to delete this note?");
         if (result) {
             note = $(this).parents(".note");
@@ -87,6 +87,7 @@ $(document).ready(function(){
 				/* msg contains the ID of the note, assigned by MySQL's auto increment: */
 				
 				var tmp = $('#fancy_ajax .note').clone();
+                tmp.removeAttr("id");
 				
 				tmp.find('span.data').text(msg).end().css({'z-index':zIndex,top:0,left:0});
 				tmp.appendTo($('#main'));
